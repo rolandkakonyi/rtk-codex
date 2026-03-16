@@ -1,7 +1,10 @@
+node_modules/
 shims/logs/
 shims/env.sh
 shims/shim-commands.txt
 shims/shim-commands.upstream.txt
 shims/bin/*
+dist/
+*.tgz
 bootstrap-*.js
 main-*.js

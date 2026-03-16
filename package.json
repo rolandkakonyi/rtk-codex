@@ -1,0 +1,29 @@
+{
+  "name": "rtk-codex",
+  "version": "0.0.0-investigation",
+  "description": "Use RTK transparently inside Codex CLI and Codex Desktop.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "rtk-codex": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build",
+    "test:config": "node dist/cli.js test-config",
+    "test:shims": "node dist/cli.js test-shims"
+  },
+  "files": [
+    "dist/",
+    "shims/rtk-upstream-ref.txt",
+    "shims/shim-commands.extra.txt",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3"
+  }
+}
