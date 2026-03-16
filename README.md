@@ -43,7 +43,7 @@ Local checkout flow:
 ```bash
 npm install
 npm run build
-./install.sh
+node dist/cli.js install
 ```
 
 This installs machine-level shims into `~/.rtk-codex` and writes a managed RTK block into `~/.codex/config.toml`.
@@ -65,7 +65,7 @@ bunx rtk-codex uninstall
 Local checkout flow:
 
 ```bash
-./uninstall.sh
+node dist/cli.js uninstall
 ```
 
 This removes only the managed RTK block from `~/.codex/config.toml`.
@@ -131,8 +131,6 @@ Source of truth in this repo:
 
 - [package.json](/Users/rolandk/Developer/rtk-codex/package.json)
 - [tsconfig.json](/Users/rolandk/Developer/rtk-codex/tsconfig.json)
-- [install.sh](/Users/rolandk/Developer/rtk-codex/install.sh)
-- [uninstall.sh](/Users/rolandk/Developer/rtk-codex/uninstall.sh)
 - [src/cli.ts](/Users/rolandk/Developer/rtk-codex/src/cli.ts)
 - [src/core.ts](/Users/rolandk/Developer/rtk-codex/src/core.ts)
 - [src/templates.ts](/Users/rolandk/Developer/rtk-codex/src/templates.ts)
@@ -143,14 +141,12 @@ Generated repo-local artifacts:
 
 - `dist/*`
 - `shims/bin/*`
-- `shims/env.sh`
 - `shims/shim-commands.txt`
 - `shims/shim-commands.upstream.txt`
 
 Installed machine-level artifacts:
 
 - `~/.rtk-codex/bin/*`
-- `~/.rtk-codex/env.sh`
 - `~/.rtk-codex/shim-commands.txt`
 
 ## Notes

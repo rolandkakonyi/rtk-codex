@@ -1,11 +1,11 @@
 import assert from "node:assert/strict";
-import { spawn, spawnSync } from "node:child_process";
+import { spawnSync } from "node:child_process";
 import { chmod, copyFile, mkdtemp, mkdir, readFile, readdir, rm, stat, unlink, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildDispatcherScript, buildEnvScript, buildWrapperScript } from "./templates.js";
+import { buildDispatcherScript, buildWrapperScript } from "./templates.js";
 
 export type CliPaths = {
   repoRoot: string;
@@ -182,7 +182,6 @@ export async function syncShims(targetRoot?: string): Promise<void> {
   const resolvedTargetRoot = targetRoot ?? paths.shimsRoot;
   const binDir = path.join(resolvedTargetRoot, "bin");
   const commandsFile = paths.shimCommandsFile;
-  const envFile = path.join(resolvedTargetRoot, "env.sh");
   const dispatcherFile = path.join(binDir, "rtk-shim");
 
   if (!existsSync(commandsFile)) {
@@ -190,9 +189,6 @@ export async function syncShims(targetRoot?: string): Promise<void> {
   }
 
   await mkdir(binDir, { recursive: true });
-  await writeFile(envFile, buildEnvScript(), "utf8");
-  await chmod(envFile, 0o755);
-
   await writeFile(dispatcherFile, buildDispatcherScript(), "utf8");
   await chmod(dispatcherFile, 0o755);
 
@@ -464,7 +460,6 @@ export async function testCodexConfig(): Promise<void> {
     assert.match(firstContents, new RegExp(`RTK_SHIM_LOG_FILE = "${tomlEscape(logFile)}"`));
     assert.equal(existsSync(path.join(shimHome, "bin", "rtk-shim")), true);
     assert.equal(existsSync(path.join(shimHome, "bin", "git")), true);
-    assert.equal(existsSync(path.join(shimHome, "env.sh")), true);
 
     await installCodexConfig();
     const secondContents = await readFile(configFile, "utf8");
