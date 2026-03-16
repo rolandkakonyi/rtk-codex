@@ -1,0 +1,3 @@
+# Local wrapper-only entries not derived from upstream rewrite_prefixes.
+env
+sudo

@@ -1,0 +1,7 @@
+shims/logs/
+shims/env.sh
+shims/shim-commands.txt
+shims/shim-commands.upstream.txt
+shims/bin/*
+bootstrap-*.js
+main-*.js
